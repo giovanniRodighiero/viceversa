@@ -11,6 +11,7 @@
     -webkit-text-size-adjust: 100%;
 
     --navbar-height: 50px;
+    --color-brand: coral;
 }
 
 * {
@@ -27,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: coral;
+    background-color: var(--color-brand);
     color: white;
     font-size: 1.2em;
 
@@ -42,4 +43,86 @@
 
 .layout {
     margin-top: calc(var(--navbar-height) + 10px);
+}
+
+.metric-widget-form {
+    background-color: bisque;
+    padding: 10px 15px;
+}
+
+.input-group {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 480px;
+
+    &--btns {
+        margin-bottom: 0;
+        text-align: right;
+
+        & > .button:first-of-type {
+            margin-right: 20px;
+        }
+    }
+
+    &__label {
+        flex: 1;
+        font-weight: bold;
+    }
+
+    &__input {
+        flex: 3;
+        padding: 5px 8px;
+    }
+
+    &__tip {
+        margin: 0;
+        font-style: italic;
+        text-align: right;
+        font-size: 14px;
+    }
+}
+
+.button {
+    border: none;
+    background-color: var(--color-brand);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 8px;
+    cursor: pointer;
+    min-width: 60px;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    &--danger {
+        border: 1px solid red;
+        background-color: white;
+        color: red;
+    }
+
+    &--ghost {
+        border: 1px solid var(--color-brand);
+        background-color: white;
+        color: var(--color-brand);
+    }
+}
+
+.metric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__btns > .button:first-of-type {
+        margin-right: 20px;
+    }
 }

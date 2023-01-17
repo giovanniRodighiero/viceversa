@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ROUTES_IDS } from "./types";
 import Layout from "./components/Layout";
 import Dashboard from "./Pages/Dashboard";
+import Admin from "./Pages/Admin";
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
             {
                 id: ROUTES_IDS.admin,
                 path: "admin",
-                element: <p>admin</p>,
+                element: <Admin />,
             },
             {
                 path: "*",

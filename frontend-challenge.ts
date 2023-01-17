@@ -54,7 +54,7 @@ export default class BackendService {
         if(this.apiKey !== CHALLENGE_API_KEY) { return Promise.reject("API Key is not valid!"); }
         return Promise.resolve(metrics.find(m => m.id === id));
     }
-    
+
     async addMetric(metric: Metric): Promise<boolean> {
         await this.delay(1000);
         if(this.apiKey !== CHALLENGE_API_KEY) { return Promise.reject("API Key is not valid!"); }

@@ -9,7 +9,7 @@ import Api from "../services/Api";
 function Dashboard() {
     const handleApiError = useErrorHandler();
 
-    const [isLoading, setisLoading] = React.useState<boolean>(false);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [metrics, setMetrics] = React.useState<Metric[]>([]);
 
     React.useEffect(() => {
@@ -17,11 +17,11 @@ function Dashboard() {
     }, []);
 
     const fetchMetrics = () => {
-        setisLoading(true);
+        setIsLoading(true);
         Api.getMetrics()
             .then(setMetrics)
             .catch(() => handleApiError(new Error("APIKEY"))) // To simplify, I'm assuming that the only exception thrown here is APIKEY related
-            .finally(() => setisLoading(false));
+            .finally(() => setIsLoading(false));
     };
 
     return (
