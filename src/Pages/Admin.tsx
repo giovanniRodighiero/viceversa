@@ -10,6 +10,7 @@ import Api from "../services/Api";
 function Admin() {
     const handleApiError = useErrorHandler();
 
+    const [isAdding, setIsAdding] = React.useState<boolean>(false);
     const [editingId, setEditingId] = React.useState<string>("");
     const [isEditingLoading, setIsEditingLoading] =
         React.useState<boolean>(false);
@@ -42,6 +43,15 @@ function Admin() {
         setIsEditingLoading(false);
     };
 
+    const onAddOne = () => setIsAdding(true);
+    const onAddCancel = () => setIsAdding(false);
+    const onAddSave = async (newMetric: Metric) => {
+        setIsEditingLoading(true);
+        await Api.addMetric(newMetric);
+        setIsAdding(false);
+        setIsEditingLoading(false);
+    };
+
     return (
         <main>
             <section>
@@ -56,43 +66,61 @@ function Admin() {
                     </p>
                 )}
                 {!isLoading && metrics.length && (
-                    <ul>
-                        {metrics.map(metric => (
-                            <li key={metric.id}>
-                                {editingId === metric.id && (
-                                    <MetricWidgetForm
-                                        actionDisabled={isEditingLoading}
-                                        originalMetric={metric}
-                                        onSaveChanges={onEditSave}
-                                        onCancelChanges={onEditCancel}
-                                    />
-                                )}
-                                {editingId !== metric.id && (
-                                    <div className="metric-row">
-                                        <MetricWidget metric={metric} />
-                                        <div className="metric-row__btns">
-                                            <button
-                                                className="button"
-                                                disabled={isEditingLoading}
-                                                onClick={onEditOpen(metric.id)}
-                                            >
-                                                edit
-                                            </button>
-                                            <button
-                                                className="button button--danger"
-                                                disabled={isEditingLoading}
-                                                onClick={() =>
-                                                    onDelete(metric.id)
-                                                }
-                                            >
-                                                delete
-                                            </button>
+                    <>
+                        <ul>
+                            {metrics.map(metric => (
+                                <li key={metric.id}>
+                                    {editingId === metric.id && (
+                                        <MetricWidgetForm
+                                            actionDisabled={isEditingLoading}
+                                            originalMetric={metric}
+                                            onSaveChanges={onEditSave}
+                                            onCancelChanges={onEditCancel}
+                                        />
+                                    )}
+                                    {editingId !== metric.id && (
+                                        <div className="metric-row">
+                                            <MetricWidget metric={metric} />
+                                            <div className="metric-row__btns">
+                                                <button
+                                                    className="button"
+                                                    disabled={isEditingLoading}
+                                                    onClick={onEditOpen(
+                                                        metric.id
+                                                    )}
+                                                >
+                                                    edit
+                                                </button>
+                                                <button
+                                                    className="button button--danger"
+                                                    disabled={isEditingLoading}
+                                                    onClick={() =>
+                                                        onDelete(metric.id)
+                                                    }
+                                                >
+                                                    delete
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                        {!isAdding && (
+                            <button className="button" onClick={onAddOne}>
+                                add new one
+                            </button>
+                        )}
+                        {isAdding && (
+                            <div>
+                                <MetricWidgetForm
+                                    isNew
+                                    onCancelChanges={onAddCancel}
+                                    onSaveChanges={onAddSave}
+                                />
+                            </div>
+                        )}
+                    </>
                 )}
             </section>
         </main>
