@@ -1,13 +1,15 @@
 import React from "react";
 import { useErrorHandler } from "react-error-boundary";
 
+import MetricWidget from "../components/MetricWidget";
+
 import { Metric } from "../types";
 import Api from "../services/Api";
 
 function Dashboard() {
     const handleApiError = useErrorHandler();
 
-    const [loading, setLoading] = React.useState<boolean>(false);
+    const [isLoading, setisLoading] = React.useState<boolean>(false);
     const [metrics, setMetrics] = React.useState<Metric[]>([]);
 
     React.useEffect(() => {
@@ -15,11 +17,11 @@ function Dashboard() {
     }, []);
 
     const fetchMetrics = () => {
-        setLoading(true);
+        setisLoading(true);
         Api.getMetrics()
             .then(setMetrics)
             .catch(() => handleApiError(new Error("APIKEY"))) // To simplify, I'm assuming that the only exception thrown here is APIKEY related
-            .finally(() => setLoading(false));
+            .finally(() => setisLoading(false));
     };
 
     return (
@@ -28,7 +30,19 @@ function Dashboard() {
                 <h1>Your metrics</h1>
             </section>
             <section>
-                <p>metrics</p>
+                {isLoading && <p>loading</p>}
+                {!isLoading && !metrics.length && (
+                    <p>there are no metrics available</p>
+                )}
+                {!isLoading && metrics.length && (
+                    <ul>
+                        {metrics.map(metric => (
+                            <li key={metric.id}>
+                                <MetricWidget metric={metric} />
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </section>
         </main>
     );
