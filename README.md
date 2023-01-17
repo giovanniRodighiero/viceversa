@@ -7,3 +7,11 @@ Write a SPA with React.js or Vue.js that:
 - write meaningful tests (bonus points).
 - create a git repository and share it with us.
 Structure the code as you would do for a production application, expecting in the future that the BackendService will provide new kind of Metric class.
+
+
+# Docs
+## Development
+* Rename `.env-sample` into `.env` and insert the correct apikey;
+* `npm install` to install;
+* `npm run dev` to start web server for local development;
+* `npm run build` to build for production.

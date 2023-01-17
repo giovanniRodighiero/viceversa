@@ -1,13 +1,17 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import NavBar from "../NavBar";
+import ErrorBoundary from "../ErrorBoundary";
 
 function Layout() {
     return (
         <div className="layout">
             <NavBar />
-            <Outlet />
+
+            <ErrorBoundary>
+                <Outlet />
+            </ErrorBoundary>
         </div>
     );
 }

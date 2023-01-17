@@ -9,6 +9,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+    --navbar-height: 50px;
 }
 
 * {
@@ -19,7 +21,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 50px;
+    height: var(--navbar-height);
     width: 100%;
     padding: 0 10px;
     display: flex;
@@ -39,5 +41,5 @@
 }
 
 .layout {
-    margin-top: 50px;
+    margin-top: calc(var(--navbar-height) + 10px);
 }

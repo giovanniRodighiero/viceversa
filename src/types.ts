@@ -3,3 +3,10 @@ export enum ROUTES_IDS {
     admin = "admin",
     dashboard = "dashboard",
 }
+
+export interface Metric {
+    id: string;
+    code: string;
+    amounts: number[] | null;
+    date: Date;
+}
