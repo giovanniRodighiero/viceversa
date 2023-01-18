@@ -1,5 +1,4 @@
-# Challenge description
-Write a SPA with React.js or Vue.js that:
+# Project description
 - implement the BackendService snippets to get the metrics from the server (use "challengeApiKey" as the apiKey ).
 - on one page allows the user to view, add, edit and delete the metrics.
 - on another page show the user the metrics as you prefer.
@@ -14,4 +13,5 @@ Structure the code as you would do for a production application, expecting in th
 * Rename `.env-sample` into `.env` and insert the correct apikey;
 * `npm install` to install;
 * `npm run dev` to start web server for local development;
+* `npm run test` to run unit test;
 * `npm run build` to build for production.
