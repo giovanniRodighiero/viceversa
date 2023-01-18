@@ -13,12 +13,12 @@ interface MetricWidgetFormProps {
     onSaveChanges: (metric: Metric) => Promise<void>;
 }
 
-interface MetricWidgetFormEditProps extends MetricWidgetFormProps {
+export interface MetricWidgetFormEditProps extends MetricWidgetFormProps {
     isNew?: undefined | false;
     originalMetric: Metric;
 }
 
-interface MetricWidgetFormNewProps extends MetricWidgetFormProps {
+export interface MetricWidgetFormNewProps extends MetricWidgetFormProps {
     isNew: true;
     originalMetric?: undefined;
 }
@@ -143,15 +143,15 @@ function MetricWidgetForm({
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="value" className="input-group__label">
-                        Value
+                    <label htmlFor="amounts" className="input-group__label">
+                        Amounts
                     </label>
                     <input
                         className="input-group__input"
                         ref={amountRef}
                         type="text"
                         pattern="^[0-9,]*$"
-                        id="value"
+                        id="amounts"
                         value={metric.amounts}
                         onChange={onAmountsChange}
                     />
